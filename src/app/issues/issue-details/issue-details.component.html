@@ -1,0 +1,55 @@
+<div class="card" *ngIf="issue">
+    <div class="card-header">
+        Issue: {{issue.number}}
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        <strong>{{errorMessage}}</strong>
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-2">Title:</div>
+            <div class="col-md-6">{{issue.title}}</div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-2">Created by:</div>
+            <div class="col-md-6">{{issue.created_at | date: "short" }}</div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-2">State:</div>
+            <div class="col-md-6">{{issue.state}}</div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-2">Body:</div>
+            <div class="col-md-6" [innerHTML]='issue.body'></div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-2">Comments:</div>
+            <div class="col-md-6">
+                <ul>
+                    <li *ngFor="let item of comments">{{item.body}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card-footer">
+        <button class="btn btn-outline-secondary" (click)="onBack()" [style.width.px]="80">
+            Back
+        </button>
+    </div>
+</div>

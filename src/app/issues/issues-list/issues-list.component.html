@@ -1,0 +1,47 @@
+<div class="card">
+    <div class="card-header">
+        Angular Repo Issues
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        <strong>{{errorMessage}}</strong> 
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-1">Filter by:</div>
+            <div class="col-md-4">
+                <input type="text" [(ngModel)]="filterList" />
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table" *ngIf="issues && issues.length">
+                    <thead>
+                        <tr>
+                            <th>Issue No.</th>
+                            <th>Title</th>
+                            <th>Created by</th>
+                            <th>State</th>
+                            <th># of Comments</th>
+                            <th>Date Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let issue of filteredIssues">
+                            <td><a [routerLink]="['/issues', issue.number]">{{issue.number}}</a></td>
+                            <td>{{issue.title}}</td>
+                            <td>{{issue.user.login }}</td>
+                            <td>{{issue.state}}</td>
+                            <td>{{issue.comments}}</td>
+                            <td>{{issue.created_at | date: "short" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

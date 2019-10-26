@@ -9,7 +9,6 @@ import { catchError } from "rxjs/operators";
   styleUrls: ["./issues-list.component.css"]
 })
 export class IssuesListComponent implements OnInit {
-  
   constructor(private issueService: IssueService) {}
 
   ngOnInit(): void {
@@ -22,18 +21,19 @@ export class IssuesListComponent implements OnInit {
       });
   }
 
+  title: string = 'Angular Repo Issues';
   issues: Issue[];
   filteredIssues: Issue[];
-  ISSUES_STATUSES: string[] = ["open", "closed"];
+  ISSUES_STATUSES: string[] = ["open", "close"];
   errorMessage: string;
 
-  _filter: string = "";
+  filter: string = "";
   get filterList(): string {
-    return this._filter;
+    return this.filter;
   }
 
   set filterList(value: string) {
-    this._filter = value;
+    this.filter = value;
     this.filteredIssues = this.filterList
       ? this.perfomFilter(this.filterList)
       : this.issues;
@@ -55,5 +55,4 @@ export class IssuesListComponent implements OnInit {
       });
     }
   }
-
 }
